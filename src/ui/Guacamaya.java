@@ -103,35 +103,75 @@ public class Guacamaya {
     }
 
     public static void solicitarDatos(){
-
-        
+        for (int i = 0; i < precios.length; i++) {
+            System.out.print("Ingrese el precio del producto " + (i+1) + ":");
+            precios[i] = reader.nextDouble();
+            System.out.print("Ingrese la cantidad vendida del producto " + (i+1) + ":");
+            unidades[i] = reader.nextInt();
+        }        
      
     }
 
+
+    /**
+     * Descripcion: Este metodo calcula el total de unidades vendidas en el dia.
+     * @return total: Total de unidades vendidas.
+     */
     public static int calcularTotalUnidadesVendidas(){
+        int total = 0;
+        for (int i = 0; i < unidades.length; i++) {
+            total += unidades[i];
+        }
 
-        return 0;
-
+        return total;
 
     }
 
+
+    /**
+     * Descripcion: Este metodo calcula el promedio del precio de las referencias de producto vedidas.
+     * @return sumPrec/precios.length: El promedio del precio de las unidades vendidas en el dia.
+     */
     public static double calcularPrecioPromedio(){
+        double sumaPrecios = 0;
+        for (int i = 0; i < precios.length; i++) {
+            sumaPrecios += precios[i];
+        }
 
-        return 0;
-
+        return sumaPrecios/precios.length;
 
     }
 
+
+    /**
+     * Descirpcion: Este metodo calcula el dinero total recaudado en las ventas del día.
+     * @return totslventas: El total de ventas 
+     */
     public static double calcularVentasTotales(){
+           double ventasTotal = 0;
+        for (int i = 0; i < precios.length; i++) {
+            ventasTotal += precios[i]*unidades[i];
+        }
 
-        return 0;
-
+        return ventasTotal;
 
     }
 
-    public static int consultarReferenciasSobreLimite(double limite){
 
-        return 0;
+    /**
+     * Descripcion: Este metodo calcula el número de referencias de productos que superaron un limite minimo de ventas en el día.
+     * @param limite: Calcula el limite minimo de ventas.
+     * @return count: El numero de referencias que superaron el limite.
+     */
+    public static int consultarReferenciasSobreLimite(double limite){
+        int count = 0;
+        for (int i = 0; i < precios.length; i++) {
+            if (precios[i]*unidades[i] > limite){
+                count++;
+            }
+        }
+
+        return count;
 
     }
 
